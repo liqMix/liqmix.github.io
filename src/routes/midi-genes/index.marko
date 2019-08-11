@@ -3,23 +3,38 @@ class {
     this.state = { note: 'C',
                    scale: 'major',
                    bpm: '120',
-                   pop_size: '2500',
+                   pop_size: '5000',
                    epochs: '5000',
-                   mut_rate: '0.05'
+                   mut_rate: '0.05',
+                   id: Math.floor(Math.random() * 10000),
+                   submit: false,
         };
   }
 
   handleSubmit() {
-    console.log('Clicked.');
+    this.state.submit = true
   }
 
-  handleChange(el) {
+  handleChange(event, el) {
+    var val = parseInt(el.value)
+    if(el.min) {
+      var min = parseInt(el.min)
+      var max = parseInt(el.max)
+      if(min && (val < min)){
+          el.value = el.min;
+      }
+
+      if (max && (val > max)){
+          el.value = el.max;
+      }
+    }
+
     this.state[el.name] = el.value;
   }
 }
 
 style {
-  p.disclaimer {
+  div.disclaimer {
     font-style: normal;
     font-size: 1em;
     font-weight: 300;
@@ -30,12 +45,27 @@ style {
     margin-top: 2em;
     margin-bottom: 0em;
     text-align: center;
+    display: flex;
+    justify-content: center;
   }
+
+  p.title {
+    margin: 0em 1em;
+  }
+
   div.selections {
     font-size: 1em;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 1em;
   }
-
+  select {
+    margin: 0em 1em;
+  }
+  input {
+    margin: 0em 1em;
+  }
   select:focus {
     border: 2px solid #5a2e0f;
   }
@@ -44,47 +74,58 @@ style {
   }
 
   button.submit {
-    margin-top: 2em;
+    display: block;
     text-align: center;
+    margin: auto;
   }
 }
 
+head
+  title -- Midi-Genes
+
 site-layout
-  @title
-    -- Midi-Genes
+  @title -- Midi-Genes
   @content
-    p.disclaimer
+    div.disclaimer
       -- Please wait until your request has finished before making another.
       br
       -- BPM can be between 30 and 300.
       br
-      -- Population and epochs can be between 2 and 20000.
-      br
+      -- Population and epochs can be between 2 and 50000.
 
-    div.titles
-      -- Note Scale BPM Population Size Epochs Mutation Rate
-    div.selections
-      select name='note' value=state.note required='true' on-change("handleChange")
-        option value='C'  -- C
-        option value='C#' -- C#
-        option value='D'  -- D
-        option value='D#' -- D#
-        option value='E'  -- E
-        option value='F'  -- F
-        option value='F#' -- F#
-        option value='G'  -- G
-        option value='G#' -- G#
-        option value='A'  -- A
-        option value='A#' -- A#
-        option value='B'  -- B
+if(!state.submit)
+  div.titles
+    p.title -- Note
+    p.title -- Scale
+    p.title -- BPM
+    p.title -- Population Size
+    p.title -- Epochs
+    p.title -- Mutation Rate
 
-      select name='scale' value=state.scale required='true' on-change("handleChange")
-        option value='major' -- Major
-        option value='minor' -- Minor
+  div.selections
+    select name='note' value=state.note on-change("handleChange") no-update
+      option value='C' -- C
+      option value='C#' -- C#
+      option value='D'  -- D
+      option value='D#' -- D#
+      option value='E'  -- E
+      option value='F'  -- F
+      option value='F#' -- F#
+      option value='G'  -- G
+      option value='G#' -- G#
+      option value='A'  -- A
+      option value='A#' -- A#
+      option value='B'  -- B
 
-      input name='bpm' type='number' min='30' max='300' value=state.bpm required='true' on-change("handleChange")
-      input name='pop_size' type='number' min='2' max='20000' value=state.pop_size required='true' on-change("handleChange")
-      input name='epochs' type='number' min='2' max='20000' value=state.epochs required='true' on-change("handleChange")
-      input name='mut_rate' type='number' min='0.0' max='1.0' step='0.01' value=state.mut_rate required='true' on-change("handleChange")
-      br
-      button.submit onClick("handleSubmit") -- Submit
+    select name='scale' value=state.scale on-change("handleChange") no-update
+      option value='major' -- Major
+      option value='minor' -- Minor
+
+    input name='bpm' type='number' min='30' max='300' value=state.bpm on-change("handleChange")
+    input name='pop_size' type='number' min='2' max='50000' value=state.pop_size on-change("handleChange")
+    input name='epochs' type='number' min='2' max='50000' value=state.epochs on-change("handleChange")
+    input name='mut_rate' type='number' min='0.0' max='1.0' step='0.01' value=state.mut_rate on-change("handleChange")
+  br
+  button.submit on-click('handleSubmit') -- Generate
+else
+  midi-getter tosend=state

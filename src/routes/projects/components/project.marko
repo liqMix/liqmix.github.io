@@ -1,21 +1,18 @@
 style {
   h1.name {
-    border: 5px;
-    font-size: 2.5em;
-    font-weight: 750;
-    color: #5a2e0f;
   }
-  h2.desc {
+  p.desc {
     font-size: 1em;
     font-style: normal;
     font-weight: 100;
-  },
-  p.url {
-    font-size: 3em;
+  }
+  button.title {
+    font-size: 1em;
+    padding: 0.25em;
+    font-weight: 750;
   }
 }
 
-h1.name -- ${input.repo.name}
-h2.desc -- ${input.repo.description}
-p.url
-  a href=input.repo.html_url -- Link
+h1.name
+  button.title onclick="location.href='"+input.repo.html_url+"'" -- ${input.repo.name}
+p.desc -- ${input.repo.description}

@@ -1,0 +1,65 @@
+class {
+  onCreate(){
+    this.state = {response: null,
+                  error: null,
+                  link: null};
+  }
+
+  onMount(){
+    this.sendRequest(this.input.tosend)
+  }
+
+  sendRequest(input) {
+    var request = fetch('https://ngtdt9lmch.execute-api.us-west-2.amazonaws.com/test/midiCaller', {
+        method: 'post',
+        body: JSON.stringify(input)}).then((response) => {this.state.response = JSON.stringify(response); this.checkFile(input.id);})
+                                     .catch((error) => {this.state.error = error});
+  }
+
+  checkFile(id) {
+    var link = "https://s3-us-west-2.amazonaws.com/midigenes.generated/output" + id + ".mid"
+    var request = new XMLHttpRequest();
+    var self = this;
+    request.open('GET', link);
+    request.send();
+    request.onload = function() {
+        if (request.status !== 200) {
+            setTimeout(function() {
+                request.open('GET', link);
+                request.send();
+            }, 2000);
+        }
+        else {
+            self.state.link = link
+        }
+    }
+
+  }
+}
+
+style {
+  div.page {
+    text-align: center;
+  }
+  div.status{
+
+  }
+  div.details{
+
+  }
+}
+
+div.page
+  div.details
+    -- Note: ${input.tosend.note}  Scale: ${input.tosend.scale} BPM: ${input.tosend.bpm}
+    br
+    -- Population-Size: ${input.tosend.pop_size} Epochs: ${input.tosend.epochs} Mutation Rate: ${input.tosend.mut_rate}
+    br
+    br
+
+  if(state.link)
+    button onclick="location.href='"+state.link+"'" -- Download
+  else-if(state.error)
+    p.status -- ${state.error}
+  else
+    p.status -- Generating...
