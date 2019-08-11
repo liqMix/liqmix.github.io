@@ -41,21 +41,16 @@ style {
   div.page {
     text-align: center;
   }
-  div.status{
-
-  }
-  div.details{
-
-  }
 }
 
 div.page
-  div.details
-    -- Note: ${input.tosend.note}  Scale: ${input.tosend.scale} BPM: ${input.tosend.bpm}
-    br
-    -- Population-Size: ${input.tosend.pop_size} Epochs: ${input.tosend.epochs} Mutation Rate: ${input.tosend.mut_rate}
-    br
-    br
+  br
+  br
+  -- Note: ${input.tosend.note}  Scale: ${input.tosend.scale} BPM: ${input.tosend.bpm}
+  br
+  -- Population-Size: ${input.tosend.pop_size} Epochs: ${input.tosend.epochs} Mutation Rate: ${input.tosend.mut_rate}
+  br
+  br
 
   if(state.link)
     button onclick="location.href='"+state.link+"'" -- Download
