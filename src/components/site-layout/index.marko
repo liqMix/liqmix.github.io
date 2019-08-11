@@ -1,0 +1,22 @@
+html lang="en-US"
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width"
+    title
+      <${input.title}/>
+  body
+    header
+      h2
+        -- Brady Young
+      h3
+        -- liqMix
+      img.logo src="./logo.png" alt="liqMix"
+      h1
+        <${input.title}/>
+      nav.menu
+        button onclick="location.href='/'" -- Home
+        button onclick="location.href='/projects'" -- Projects
+        button onclick="location.href='/midi-genes'" -- Midi-Genes
+        button onclick="location.href='/links'" -- Links
+    div.content
+      <${input.content}/>

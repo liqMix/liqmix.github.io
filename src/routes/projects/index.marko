@@ -1,0 +1,27 @@
+import fetch from 'node-fetch'
+
+$ var token = 'token 94460f5da8e37a47c56ae6fe864b65e9dc206293';
+$ var request = fetch('https://api.github.com/users/liqmix/repos', {
+    method: 'get',
+    headers: {
+      'Accept': 'application/vnd.github.baptiste-preview+json',
+      'Authorization': token
+    }}).then((response) => {return response.json()})
+
+
+style {
+  div.project{
+    margin-bottom: 2.5em;
+  }
+}
+
+site-layout
+  @title -- Projects
+  @content
+      await(request)
+        @then|response|
+          for|r| of=response.reverse()
+            div.project
+              project repo=r
+        @catch|err|
+          ${err}
