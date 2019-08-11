@@ -1,6 +1,7 @@
 {
   "name": "liq-website",
-  "description": "Demo of how to build an app using marko-starter",
+  "homepage": "http://liqmix.github.io/ ",
+  "description": "Small personal website",
   "version": "1.0.0",
   "dependencies": {
     "marko": "^4.13.10",
@@ -17,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/marko-js-samples/marko-starter-demo"
+    "url": "https://github.com/liqMix/liqmix.github.io/tree/marko"
   },
   "scripts": {
     "build": "NODE_ENV=production marko-starter build",
