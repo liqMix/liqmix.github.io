@@ -1,18 +1,11 @@
 style {
-  h1.name {
-  }
-  p.desc {
-    font-size: 1em;
-    font-style: normal;
-    font-weight: 100;
-  }
-  button.title {
-    font-size: 1em;
+  .title {
+    font-size: 0.75em;
     padding: 0.25em;
     font-weight: 750;
   }
 }
 
 h1.name
-  button.title onclick="location.href='"+input.repo.html_url+"'" -- ${input.repo.name}
+  button.title onclick="location.href='" + input.repo.html_url + "'" -- ${input.repo.name}
 p.desc -- ${input.repo.description}
