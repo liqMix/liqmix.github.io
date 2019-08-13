@@ -5,7 +5,9 @@
   "dependencies": {
     "marko": "^4.13.10",
     "marko-starter": "^2.0.4",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "x2js": "^3.3.1",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "eslint": "^5.9.0",
