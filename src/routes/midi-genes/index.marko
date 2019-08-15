@@ -6,6 +6,8 @@ class {
                    pop_size: '5000',
                    epochs: '5000',
                    mut_rate: '0.05',
+                   bass: true,
+                   drums: true,
                    id: Math.floor(Math.random() * 10000),
                    submit: false,
         };
@@ -30,6 +32,10 @@ class {
     }
 
     this.state[el.name] = el.value;
+  }
+
+  handleBool(event, el) {
+    this.state[el.name] = !this.state[el.name];
   }
 }
 
@@ -140,6 +146,16 @@ if(!state.submit)
     div.group
       p.title -- Mutation Rate
       input name='mut_rate' type='number' min='0.0' max='1.0' step='0.01' value=state.mut_rate on-change("handleChange")
+
+  div.selections
+    div.group
+      p.title -- Include bass?
+      input name='bass' type='checkbox' checked=state.bass on-change("handleBool")
+
+    div.group
+      p.title -- Include drums?
+      input name='drums' type='checkbox' checked=state.drums on-change("handleBool")
+
   br
   button.submit on-click('handleSubmit') -- Generate
 else
