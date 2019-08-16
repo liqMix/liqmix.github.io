@@ -6,9 +6,10 @@ class {
                    pop_size: '5000',
                    epochs: '5000',
                    mut_rate: '0.05',
+                   instrument: 0,
                    bass: true,
                    drums: true,
-                   id: Math.floor(Math.random() * 10000),
+                   id: Math.floor(Math.random() * 100000),
                    submit: false,
         };
   }
@@ -68,6 +69,14 @@ style {
     height: 2em;
     width: 75%;
     box-sizing: border-box;
+
+  }
+  .instrument {
+    width: 90%;
+  }
+  select option:disabled {
+    font-weight: bold;
+    font-size: 125%;
   }
 
   input {
@@ -147,6 +156,154 @@ if(!state.submit)
       p.title -- Mutation Rate
       input name='mut_rate' type='number' min='0.0' max='1.0' step='0.01' value=state.mut_rate on-change("handleChange")
 
+  div.selections
+    div.group
+      p.title -- Instrument
+      select.instrument name='instrument' value=state.instrument on-change("handleChange") no-update
+        option disabled -- Piano
+        option value='1' -- Acoustic Grand Piano
+        option value='2' -- Bright Acoustic Piano
+        option value='3' -- Electric Grand Piano
+        option value='4' -- Honky-tonk Piano
+        option value='5' -- Electric Piano 1
+        option value='6' -- Electric Piano 2
+        option value='7' -- Harpsichord
+        option value='8' -- Clavinet
+        option disabled -- Chromatic Percussion
+        option value='9' -- Celesta
+        option value='10' -- Glockenspiel
+        option value='11' -- Music Box
+        option value='12' -- Vibraphone
+        option value='13' -- Marimba
+        option value='14' -- Xylophone
+        option value='15' -- Tubular Bells
+        option value='16' -- Dulcimer
+        option disabled -- Organ
+        option value='17' -- Drawbar Organ
+        option value='18' -- Percussive Organ
+        option value='19' -- Rock Organ
+        option value='20' -- Church Organ
+        option value='21' -- Reed Organ
+        option value='22' -- Accordion
+        option value='23' -- Harmonica
+        option value='24' -- Tango Accordion
+        option disabled -- Guitar
+        option value='25' -- Acoustic Guitar (nylon)
+        option value='26' -- Acoustic Guitar (steel)
+        option value='27' -- Electric Guitar (jazz)
+        option value='28' -- Electric Guitar (clean)
+        option value='29' -- Electric Guitar (muted)
+        option value='30' -- Overdriven Guitar
+        option value='31' -- Distortion Guitar
+        option value='32' -- Guitar Harmonics
+        option disabled -- Bass
+        option value='33' -- Acoustic Bass
+        option value='34' -- Electric Bass (finger)
+        option value='35' -- Electric Bass (pick)
+        option value='36' -- Fretless Bass
+        option value='37' -- Slap Bass 1
+        option value='38' -- Slap Bass 2
+        option value='39' -- Synth Bass 1
+        option value='40' -- Synth Bass 2
+        option disabled -- Strings
+        option value='41' -- Violin
+        option value='42' -- Viola
+        option value='43' -- Cello
+        option value='44' -- Contrabass
+        option value='45' -- Tremolo Strings
+        option value='46' -- Pizzicato Strings
+        option value='47' -- Orchestral Harp
+        option value='48' -- Timpani
+        option disabled -- Ensemble
+        option value='49' -- String Ensemble 1
+        option value='50' -- String Ensemble 2
+        option value='51' -- Synth Strings 1
+        option value='52' -- Synth Strings 2
+        option value='53' -- Choir Aahs
+        option value='54' -- Voice Oohs
+        option value='55' -- Synth Choir
+        option value='56' -- Orchestra Hit
+        option disabled -- Brass
+        option value='57' -- Trumpet
+        option value='58' -- Trombone
+        option value='59' -- Tuba
+        option value='60' -- Muted Trumpet
+        option value='61' -- French Horn
+        option value='62' -- Brass Section
+        option value='63' -- Synth Brass 1
+        option value='64' -- Synth Brass 2
+        option disabled -- Reed
+        option value='65' -- Soprano Sax
+        option value='66' -- Alto Sax
+        option value='67' -- Tenor Sax
+        option value='68' -- Baritone Sax
+        option value='69' -- Oboe
+        option value='70' -- English Horn
+        option value='71' -- Bassoon
+        option value='72' -- Clarinet
+        option disabled -- Pipe
+        option value='73' -- Piccolo
+        option value='74' -- Flute
+        option value='75' -- Recorder
+        option value='76' -- Pan Flute
+        option value='77' -- Blown bottle
+        option value='78' -- Shakuhachi
+        option value='79' -- Whistle
+        option value='80' -- Ocarina
+        option disabled -- Synth Lead
+        option value='81' -- Lead 1 (square)
+        option value='82' -- Lead 2 (sawtooth)
+        option value='83' -- Lead 3 (calliope)
+        option value='84' -- Lead 4 (chiff)
+        option value='85' -- Lead 5 (charang)
+        option value='86' -- Lead 6 (voice)
+        option value='87' -- Lead 7 (fifths)
+        option value='88' -- Lead 8 (bass + lead)
+        option disabled -- Synth Pad
+        option value='89' -- Pad 1 (new age)
+        option value='90' -- Pad 2 (warm)
+        option value='91' -- Pad 3 (polysynth)
+        option value='92' -- Pad 4 (choir)
+        option value='93' -- Pad 5 (bowed)
+        option value='94' -- Pad 6 (metallic)
+        option value='95' -- Pad 7 (halo)
+        option value='96' -- Pad 8 (sweep)
+        option disabled -- Synth Effects
+        option value='97' -- FX 1 (rain)
+        option value='98' -- FX 2 (soundtrack)
+        option value='99' -- FX 3 (crystal)
+        option value='100' -- FX 4 (atmosphere)
+        option value='101' -- FX 5 (brightness)
+        option value='102' -- FX 6 (goblins)
+        option value='103' -- FX 7 (echoes)
+        option value='104' -- FX 8 (sci-fi)
+        option disabled -- Ethnic
+        option value='105' -- Sitar
+        option value='106' -- Banjo
+        option value='107' -- Shamisen
+        option value='108' -- Koto
+        option value='109' -- Kalimba
+        option value='110' -- Bagpipe
+        option value='111' -- Fiddle
+        option value='112' -- Shanai
+        option disabled -- Percussive
+        option value='113' -- Tinkle Bell
+        option value='114' -- Agogo
+        option value='115' -- Steel Drums
+        option value='116' -- Woodblock
+        option value='117' -- Taiko Drum
+        option value='118' -- Melodic Tom
+        option value='119' -- Synth Drum
+        option value='120' -- Reverse Cymbal
+        option disabled -- Sound effects
+        option value='121' -- Guitar Fret Noise
+        option value='122' -- Breath Noise
+        option value='123' -- Seashore
+        option value='124' -- Bird Tweet
+        option value='125' -- Telephone Ring
+        option value='126' -- Helicopter
+        option value='127' -- Applause
+        option value='128' -- Gunshot
   div.selections
     div.group
       p.title -- Include bass?
