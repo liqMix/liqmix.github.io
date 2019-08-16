@@ -1,20 +1,36 @@
 import fetch from 'node-fetch'
 $ var convert = require("xml-js");
-$ var request = fetch('https://6eichf5qkg.execute-api.us-west-2.amazonaws.com/test/midigenes.generated',
-        {method: 'get'}
-        ).then((response) => {
-          return parseXML(response.text())}
+$ var request = fetch('https://sku1xfs72d.execute-api.us-west-2.amazonaws.com/test/bucketMeta',
+        {method: "post",
+         body: "{\"resource\": \"recent\"}"}
+       ).then((response) => {return response.json()}
         ).catch((error) => {return error})
-$ function parseXML(text){
-  return text;
+
+style {
+  .entry {
+    display: flex;
+    justify-content: center;
+    padding: 0.5em;
+    text-align: center;
+  }
+  .time {
+    padding: 0.25em 1.5em;
+  }
+  .id {
+    padding: 0em 1.5em;
+  }
 }
 site-layout
   @title -- Recent Generations
   @content
-    div.empty
-      -- hello
       await(request)
         @then|response|
-          -- ${response}
+          $ response = JSON.parse(response.body);
+          for|r| in=response
+            div.entry
+              div.time
+              -- ${response[r].time}
+              div.id
+                button onclick="location.href='https://s3-us-west-2.amazonaws.com/midigenes.generated/output" + response[r].id + ".mid'" -- Download
         @catch|err|
           -- ${err}
