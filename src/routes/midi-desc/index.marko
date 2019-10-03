@@ -1,0 +1,166 @@
+style {
+  div.desc {
+    font-weight: 100;
+    font-size: 1em;
+    margin-bottom: 1em;
+  }
+  ul {
+    list-style: none;
+  }
+}
+site-layout
+  @title -- Midi-Genes Process
+  @content
+    h1 -- MIDI
+    keyword title='What is MIDI?'
+      @content
+        div.desc
+          --
+            Essentially, MIDI is simply a standarized format used to describe sound events. By combining multiple sound events it is possible to create musical pieces.
+            Unlike MP3 or WAV files which are commonly used for audio, there are no 'recorded' sound waves in a MIDI file. They are instead instructions for
+            a MIDI player to recreate the described sound events. You can think of them as electronic versions of the inscribed pins on a <a href='https://en.wikipedia.org/wiki/Music_box'>music box</a>.
+            <br/>
+            While a track can consist of sound events, MIDI files can also consist of multiple tracks, which enables multiple instruments to play concurrently.
+            <br/>
+            A more in-depth explanation can be found <a href='https://en.wikipedia.org/wiki/MIDI'>here</a>, but for describing the behaviour of Midi-Genes it enough to know that a MIDI file consists of a set of tracks,
+            and that each track consists of a set of sound events or, as I will refer to them, 'notes'.
+          --
+    keyword title='MIDI Keywords'
+      @content
+        div.desc
+          -- There are a few MIDI related keywords used throughout the description of the program that are necessary to understand the musical representation:
+        ul
+          li
+            keyword title='MIDI'
+              @content  -- An acronym for 'Musical Instrument Digital Interface'. A standardized format for descibing sound events.
+          li
+            keyword title='Sound Event'
+              @content -- An event composed of pitch, velocity, and the tick which it occurs on.
+          li
+            keyword title='Pitch'
+              @content -- The 'note' that is played by a sound event (C, D, E, etc.).
+          li
+            keyword title='Velocity'
+              @content
+                -- The intensity that a note is played with. Can also be thought of as the 'volume' of a note, although there are
+                -- additional effects on how a note sounds at different velocities.
+          li
+            keyword title='Tick'
+              @content -- The 'time' at which a given event occurs.
+          li
+            keyword title='BPM'
+              @content -- The number of ticks in a given time. Determines the 'speed' of the midi song.
+
+    h1 -- Evolutionary Algorithm
+    keyword title='Evolution Keywords'
+      @content
+        div.desc
+          -- There are a few evolution related keywords used throughout the description of the program that are necessary to describe the evolutionary process.
+          -- Most of these are parameters used to tune the program:
+        ul
+          li
+            keyword title='Population'
+              @content  -- The number of members subject to the evolutionary process.
+          li
+            keyword title='Generation'
+              @content -- A given iteration of the evolutionary process.
+          li
+            keyword title='Mutation Rate'
+              @content -- The chance that a given track will 'mutate' during reproduction.
+          li
+            keyword title='Gene'
+              @content -- The make-up of a member of the population. A member of a population is nothing but their genes.
+          li
+            keyword title='Fitness'
+              @content -- The comparative value of a member of a population. A higher fitness than its counterparts will lead to a higher chance of the member passing on its genes.
+
+    h1 -- Midi-Genes Process
+    keyword title='Initialization'
+      @content
+        div.desc
+          --
+            The program begins by creating a set of individual MIDI tracks, each populated by a set of randomized notes which are the member's <b>genes</b>.
+            The <b>population</b> parameter is used to determine the number of tracks to create.
+            For standarization sake, each note can only be of a certain length;
+            one of five specific divisions of the <b>BPM</b> which in musical terms would represent: Whole, half, quarter, eighth, and sixteenth notes.
+            In order to keep the tracks within a reasonable length, any notes occuring after a certain tick are removed.
+            Each track's inital <b>fitness</b> is calculated through the described process below.
+          --
+    keyword title='Fitness Calculation'
+      @content
+        div.desc
+          --
+            The fitness of a track is what is used to determine its general 'pleasantness' and chance to pass on its musical genes. Despite the subjective nature of pleasing music,
+            there are a few general melodic rules that can guide basic composition.
+          --
+        ul
+          li
+            div.desc
+              --
+                <b>Pitch is in Key:</b>
+                <br/> For each note in the track that falls within the given key, the track's fitness increases.
+                <br/>
+              --
+          li
+            div.desc
+              --
+                <b>Starting and Ending Notes:</b>
+                <br/> If the track begins with either the root or the fifth of the key, the track's fitness increases.
+                      Inversely, if the track does not end with the root note, the track's fitness decreases.
+                <br/>
+              --
+          li
+            div.desc
+              --
+                <b>Reverse Movement:</b>
+                <br/> If there is a jump in pitch between two notes, the track's fitness increases if there is the note
+                      following the jump moves back towards the first note's pitch.
+                <br/>
+              --
+          li
+            div.desc
+              --
+                <b>Large Jumps:</b>
+                <br/> If there is a significantly large jump in pitch between two notes, the track's fitness decreases
+                      according to the difference between the notes.
+                <br/>
+              --
+          li
+            div.desc
+              --
+                <b><a href='https://en.wikipedia.org/wiki/Tritone'>Tritone:</a></b>
+                <br/> There is a given relationship between two notes in the key that is 'generally' unpleasant.
+                      Presence of these two notes appearing sequentially decreases the track's fitness.
+                <br/>
+              --
+          li
+            div.desc
+              --
+                <b>Repeated Duration:</b>
+                <br/> If sequential notes share the same duration, the track's fitness decreases.
+                <br/>
+              --
+    keyword title='Reproduction'
+      @content
+        div.desc
+          --
+            In order to improve the general fitness of the population, each new generation loses two of its
+            lowest fitness members and gains two new members as a result of the two highest fitness tracks
+            reproducing. The two children which replace the weakest members are a result of cross-over between
+            its fit parents as well as subject to random mutation.
+          --
+        keyword title='Cross-Over'
+          @content
+            div.desc
+              --
+                In order to create the first child, the first-half of the first parent is connected to the second-half
+                of the second parent. The second child is created by the opposite combination: the second-half of the
+                first parent, and the first-half of the second parent.
+              --
+        keyword title='Mutation'
+          @content
+            div.desc
+              --
+                After the children are created, they have a chance of mutating a random note within their track. If
+                the mutation does occur, a single note from their track either increases or descreases its pitch.
+              --

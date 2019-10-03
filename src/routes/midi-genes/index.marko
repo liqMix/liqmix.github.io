@@ -106,9 +106,10 @@ site-layout
   @title -- Midi-Genes
   @content
     div.disclaimer
+      button onclick="location.href='../midi-desc'" -- How it Works
       br
       button onclick="location.href='https://liqmix-public.s3-us-west-2.amazonaws.com/Midi-Genes+Report.pdf'" -- Initial Report
-      button onclick="location.href='../list'" -- Recent Generations
+      button onclick="location.href='../midi-list'" -- Recent Generations
       br
       br
       -- Please wait until your request has finished before making another.
@@ -150,7 +151,7 @@ if(!state.submit)
       input name='pop_size' type='number' min='2' max='50000' value=state.pop_size on-change("handleChange")
 
     div.group
-      p.title -- Epochs
+      p.title -- Generations
       input name='epochs' type='number' min='2' max='50000' value=state.epochs on-change("handleChange")
 
     div.group

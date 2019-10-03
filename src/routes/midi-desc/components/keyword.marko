@@ -1,0 +1,24 @@
+class {
+  show(event, el){
+    var element = document.getElementById('keydesc-' + el.id)
+    var display = element.style.display
+    if(display === 'block')
+      display = 'none'
+    else {
+      display = 'block'
+    }
+    element.setAttribute('style', 'display: ' + display)
+  }
+}
+
+style {
+  button{
+    margin-bottom: 1em;
+  }
+  div{
+    margin-bottom: 1em;
+  }
+}
+
+button.collapse id=input.title on-click("show") -- ${input.title}
+div id="keydesc-"+input.title style="display: none" -- <${input.content}/>

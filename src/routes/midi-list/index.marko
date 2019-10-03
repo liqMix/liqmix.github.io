@@ -26,11 +26,16 @@ site-layout
       await(request)
         @then|response|
           $ response = JSON.parse(response.body);
-          for|r| in=response
+          if(response === 'empty')
             div.entry
-              div.time
-              -- ${response[r].time}
-              div.id
-                button onclick="location.href='https://s3-us-west-2.amazonaws.com/midigenes.generated/output" + response[r].id + ".mid'" -- Download
+              -- No recent generations found.
+          else
+            for|r| in=response
+              div.entry
+                div.time
+                -- ${response[r].time}
+                div.id
+                  button onclick="location.href='https://s3-us-west-2.amazonaws.com/midigenes.generated/output" + response[r].id + ".mid'" -- Download
+
         @catch|err|
           -- ${err}
