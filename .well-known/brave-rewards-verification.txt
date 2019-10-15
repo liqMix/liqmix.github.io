@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: liqmix.github.io
+Token: 406e2fde13ea9567e05971f8d1a670047701b981ced98280a160247f2c3b21f0
